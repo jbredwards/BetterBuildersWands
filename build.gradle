@@ -48,25 +48,25 @@ processResources {
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
-    classifier = 'dev'
+    classifier = 'deobf'
 }
 
-//noinspection GrUnresolvedAccess
-task release(type: Copy) {
-    dependsOn "build"
-
-    from project.tasks.jar.archivePath
-    into "release/"
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
 }
-
-build.dependsOn deobfJar
 
 artifacts {
     archives deobfJar
+    archives sourcesJar
 }
 
-configurations {
-    deployerJars
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+            artifact deobfJar
+            artifact sourcesJar
+        }
+    }
 }
-
-
