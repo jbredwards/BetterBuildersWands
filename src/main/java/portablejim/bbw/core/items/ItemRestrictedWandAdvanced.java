@@ -13,7 +13,7 @@ public class ItemRestrictedWandAdvanced extends ItemBasicWand {
     public ItemRestrictedWandAdvanced(RestrictedWand wand) {
         super();
         setMaxDamage(ToolMaterial.IRON.getMaxUses());
-        this.setUnlocalizedName("betterbuilderswands.wandadvanced");
+        this.setTranslationKey("betterbuilderswands.wandadvanced");
         //setTextureName("betterbuilderswands:wandIron");
         this.wand = wand;
     }
